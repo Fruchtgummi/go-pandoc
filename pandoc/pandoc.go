@@ -32,6 +32,7 @@ type ConvertOptions struct {
 	PreserveTabs          bool          `json:"preserve_tabs"`
 	TabStop               int           `json:"tab_stop"`
 	ShellEscape           bool          `json:"shell_escape"`
+	Write18               bool          `json:"write_18"`
 	TrackChanges          string        `json:"track_changes"` // accept|reject|all
 	FileScope             bool          `json:"file_scope"`
 	ExtractMedia          string        `json:"extract_media"`
@@ -144,6 +145,10 @@ func (p *ConvertOptions) toCommandArgs(safeDir string, enableFilter, enableLuaFi
 
 	if p.ShellEscape {
 		args = append(args, "--shell-escape")
+	}
+
+	if p.Write18 {
+		args = append(args, "--enable-write18")
 	}
 
 	if p.FileScope {
